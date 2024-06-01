@@ -80,5 +80,7 @@ jobs:
       if: runner.os == 'Linux'
  
     - name: Test integration
-      run: npm run integration-test
+      run: |
+        (Get-Content -Path "node_modules/@vscode/debugadapter/lib/debugSession.js" -Raw) -replace '(?s)        this\.on\(''close'',\s*\(\)\s*=>\s*{\s*this.shutdown\(\);\s*}\);', '/*$0*/'| Set-Content -Path "node_modules/@vscode/debugadapter/lib/debugSession.js"
+        npm run integration-test
       if: runner.os != 'Linux'
