@@ -500,9 +500,9 @@ workflows:
     # - test-grammar:
     #     requires:
     #     - checkout
-    # - build:
-    #     requires:
-    #     - checkout
+    - build:
+        requires:
+        - checkout
     # - eslint-check:
     #     requires:
     #     - build
