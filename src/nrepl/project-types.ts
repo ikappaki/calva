@@ -358,7 +358,6 @@ const projectTypes: { [id: string]: ProjectType } = {
       'ClojureScript built-in for node',
     ],
     cmd: () => {
-      console.error('::HIIIII');
       const configuredCmd =
         getConfig().depsEdnJackInExecutable === 'clojure or deps.clj'
           ? getStateValue('depsEdnJackInDefaultExecutable') ?? 'deps.clj'

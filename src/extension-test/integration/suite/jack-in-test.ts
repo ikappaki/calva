@@ -60,6 +60,20 @@ suite('Jack-in suite', () => {
     testUtil.log(suite, 'test.clj closed');
   });
 
+  test('start repl and connect (jack-in) to basilisp', async function () {
+    testUtil.log(suite, 'start repl and connect (jack-in) basilisp');
+
+    const settings = {};
+    await writeSettings(settings);
+
+    const testFilePath = await startJackInProcedure(suite, 'calva.jackIn', 'basilisp');
+
+    await loadAndAssert(suite, testFilePath, ['; bar', 'nil', 'clj꞉test꞉> ']);
+
+    await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
+    testUtil.log(suite, 'test.clj closed');
+  });
+
   test('Jack-in afterCLJReplJackInCode can be a string', async () => {
     testUtil.log(suite, 'Jack-in afterCLJReplJackInCode can be a string');
     const settings = {
@@ -135,7 +149,11 @@ suite('Jack-in suite', () => {
     const cmdLine = await vscode.env.clipboard.readText();
     testUtil.log(suite, 'cmdLine', cmdLine);
 
-    assert.ok(cmdLine.includes('clojure'));
+    if (util.isWindows) {
+      assert.ok(cmdLine.includes('deps.clj'));
+    } else {
+      assert.ok(cmdLine.includes('clojure'));
+    }
 
     await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
     testUtil.log(suite, 'test.clj closed');
