@@ -56,9 +56,9 @@ jobs:
         cli: '1.10.3.1013'
         # lein: '2.9.10'
 
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
-        node-version: 16
+        node-version: 18.x
     - run: npm install
 
     # - run: npm install shadow-cljs@2.20.13 -g
@@ -76,5 +76,5 @@ jobs:
 
     - name: Test integration
       run: |
-        npm run integration-test
-
+        xvfb-run -a npm run integration-test
+      if: runner.os == 'Linux'
