@@ -63,8 +63,13 @@ suite('Jack-in suite', () => {
 
   test('start repl and connect (jack-in) to basilisp', async function () {
     testUtil.log(suite, 'start repl and connect (jack-in) to basilisp');
+    // Set the `basilispPath` configuration option in package.json to
+    // the path of the Basilisp executable in your virtual
+    // environment, or install it globally using `pip install
+    // basilisp`. The `which` call below will fail the test if the
+    // executable cannot be found.
     const basilispPath = getConfig().basilispPath;
-    console.error(':BP', basilispPath, which.sync(basilispPath));
+    testUtil.log(suite, `Basilisp executable found at ${which.sync(basilispPath)}`);
 
     const settings = {};
     await writeSettings(settings);

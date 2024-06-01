@@ -214,7 +214,7 @@ jobs:
         name: Apt install missing dependencies
         command: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E88979FB9B30ACF2; sudo apt update && sudo apt install -y libnss3
     - run:
-        name: install python 3.12
+        name: Pip install Basilisp (Python)
         command: |
           sudo add-apt-repository --yes ppa:deadsnakes/ppa
           sudo apt-get update
@@ -494,47 +494,47 @@ workflows:
         filters:
           tags:
             ignore: /^v\d+\.\d+\.\d+-?.*/
-    # - prettier-check:
-    #     requires:
-    #     - checkout
-    # - test-grammar:
-    #     requires:
-    #     - checkout
+    - prettier-check:
+        requires:
+        - checkout
+    - test-grammar:
+        requires:
+        - checkout
     - build:
         requires:
         - checkout
-    # - eslint-check:
-    #     requires:
-    #     - build
-    # - test-cljslib:
-    #     requires:
-    #     - build
+    - eslint-check:
+        requires:
+        - build
+    - test-cljslib:
+        requires:
+        - build
     - test-integration:
         requires:
         - build
-    # - test-e2e:
-    #     requires:
-    #     - build
-    # - test-e2e-sub-projects:
-    #     requires:
-    #     - build
-    # - test-ts-unit:
-    #     requires:
-    #     - build
-    # - marketplace-preview-publish:
-    #     requires:
-    #     - prettier-check
-    #     - eslint-check
-    #     - test-grammar
-    #     - test-cljslib
-    #     - test-integration
-    #     - test-e2e
-    #     - test-e2e-sub-projects
-    #     - test-ts-unit
-    #     filters:
-    #       branches:
-    #         only: disabled
-    #     context: Calva
+    - test-e2e:
+        requires:
+        - build
+    - test-e2e-sub-projects:
+        requires:
+        - build
+    - test-ts-unit:
+        requires:
+        - build
+    - marketplace-preview-publish:
+        requires:
+        - prettier-check
+        - eslint-check
+        - test-grammar
+        - test-cljslib
+        - test-integration
+        - test-e2e
+        - test-e2e-sub-projects
+        - test-ts-unit
+        filters:
+          branches:
+            only: disabled
+        context: Calva
   release-publish:
     jobs:
     - checkout:
