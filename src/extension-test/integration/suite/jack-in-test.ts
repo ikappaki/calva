@@ -206,7 +206,7 @@ function writeSettings(settings: any): Thenable<void> {
 async function waitForResult(suite: string) {
   while (!util.getConnectedState()) {
     testUtil.log(suite, 'waiting for connect...');
-    await testUtil.sleep(200);
+    await testUtil.sleep(1000);
   }
   await testUtil.sleep(500); // wait a little longer for repl output to be done
   testUtil.log(suite, 'connected to repl');

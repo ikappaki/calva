@@ -21,8 +21,8 @@ jobs:
 
     strategy:
       matrix:
-        # os: [macos-13, ubuntu-latest, windows-latest]
-        os: [ubuntu-latest]
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        # os: [ubuntu-latest]
 
         # java_version: ['11', '17']
         java_version: ['11']
@@ -75,12 +75,22 @@ jobs:
         npm run compile
 
     - name: Test integration (Linux)
+      if: startsWith (matrix.os, 'windows')
       run: |
         xvfb-run -a npm run integration-test
-      if: runner.os == 'Linux'
  
-    - name: Test integration
+    - name: Test integration (Ubuntu)
+      if: startsWith (matrix.os, 'ubuntu')
       run: |
         (Get-Content -Path "node_modules/@vscode/debugadapter/lib/debugSession.js" -Raw) -replace '(?s)        this\.on\(''close'',\s*\(\)\s*=>\s*{\s*this.shutdown\(\);\s*}\);', '/*$0*/'| Set-Content -Path "node_modules/@vscode/debugadapter/lib/debugSession.js"
         npm run integration-test
-      if: runner.os != 'Linux'
+
+    - name: Test integration (Linux)
+      if: startsWith (matrix.os, 'windows')
+      run: |
+        xvfb-run -a npm run integration-test
+
+    - name: Test integration (MacOs)
+      if: startsWith (matrix.os, 'macos')
+      run: |
+        npm run integration-test

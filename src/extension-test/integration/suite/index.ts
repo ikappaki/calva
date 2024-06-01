@@ -26,7 +26,7 @@ export function run(): Promise<void> {
       // Add files to the test suite
       files.forEach((f) => mocha.addFile(path.resolve(testsRoot, f)));
 
-      mocha.grep('basilisp');
+      // mocha.grep('basilisp');
       console.log(files);
       try {
         // Run the mocha test
