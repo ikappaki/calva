@@ -76,5 +76,5 @@ jobs:
 
     - name: Test integration
       run: |
-        npm run test-integration
+        npm run integration-test
 
