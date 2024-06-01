@@ -62,7 +62,7 @@ suite('Jack-in suite', () => {
   });
 
   test('start repl and connect (jack-in) to basilisp', async function () {
-    testUtil.log(suite, 'start repl and connect (jack-in) basilisp');
+    testUtil.log(suite, 'start repl and connect (jack-in) to basilisp');
     const basilispPath = getConfig().basilispPath;
     console.error(":BP", basilispPath, which.sync(basilispPath));
 
