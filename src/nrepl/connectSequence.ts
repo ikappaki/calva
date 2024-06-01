@@ -17,6 +17,7 @@ enum ProjectTypes {
   'babashka' = 'babashka',
   'nbb' = 'nbb',
   'joyride' = 'joyride',
+  'basilisp' = 'basilisp',
   'generic' = 'generic',
   'custom' = 'custom',
   'cljs-only' = 'cljs-only',
@@ -226,6 +227,15 @@ const joyrideDefaults: ReplConnectSequence[] = [
   },
 ];
 
+const basilispDefaults: ReplConnectSequence[] = [
+  {
+    name: 'basilisp',
+    projectType: ProjectTypes['basilisp'],
+    cljsType: CljsTypes.none,
+    nReplPortFile: ['.nrepl-port'],
+  },
+];
+
 const defaultSequences = {
   lein: leiningenDefaults,
   clj: cljDefaults,
@@ -236,6 +246,7 @@ const defaultSequences = {
   custom: customDefaults,
   babashka: babashkaDefaults,
   nbb: nbbDefaults,
+  basilisp: basilispDefaults,
   joyride: joyrideDefaults,
   'cljs-only': cljsOnlyDefaults,
 };
