@@ -61,8 +61,8 @@ suite('Jack-in suite', () => {
     testUtil.log(suite, 'test.clj closed');
   });
 
-  test('start repl and connect (jack-in) to basilisp', async function () {
-    testUtil.log(suite, 'start repl and connect (jack-in) to basilisp');
+  test('start repl and connect (jack-in) to Basilisp', async function () {
+    testUtil.log(suite, 'start repl and connect (jack-in) to Basilisp');
     // Set the `basilispPath` configuration option in package.json to
     // the path of the Basilisp executable in your virtual
     // environment, or install it globally using `pip install
@@ -79,7 +79,7 @@ suite('Jack-in suite', () => {
     await loadAndAssert(suite, testFilePath, ['; bar', 'nil', 'clj꞉test꞉> ']);
 
     await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
-    testUtil.log(suite, 'test.clj closed');
+    testUtil.log(suite, 'test.clj closed for Basilisp');
   });
 
   test('Jack-in afterCLJReplJackInCode can be a string', async () => {
