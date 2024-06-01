@@ -224,8 +224,6 @@ jobs:
           sudo python3.12 -m pip install --upgrade pip setuptools wheel
           sudo python3.12 -m pip install pipenv
           python3.12 -m pip install basilisp==0.1.0b2
-          basilisp version
-          basilisp nrepl-server
     - run:
         name: Run Extension Tests
         command: npm run integration-test

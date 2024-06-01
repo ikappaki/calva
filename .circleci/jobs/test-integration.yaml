@@ -31,7 +31,7 @@ steps:
     sudo python3.12 get-pip.py
     sudo python3.12 -m pip install --upgrade pip setuptools wheel
     sudo python3.12 -m pip install pipenv
-    sudo python3.12 -m pip install basilisp==0.1.0b2
+    python3.12 -m pip install basilisp==0.1.0b2
 
 - !cmd:
   - Run Extension Tests
