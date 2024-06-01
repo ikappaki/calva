@@ -425,7 +425,7 @@ let lastAppended = '';
 
 /* If something must be done after a particular edit, use the onAppended callback. */
 export function append(text: string, onAppended?: OnAppendedCallback): void {
-    console.error("::appending", text);
+  console.error('::appending', text);
   lastAppended = text;
   resultsBuffer.push({ text, onAppended });
   void flushOutput();
