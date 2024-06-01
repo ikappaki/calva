@@ -22,7 +22,7 @@ jobs:
     strategy:
       matrix:
         # os: [macos-13, ubuntu-latest, windows-latest]
-        os: [windows-latest]
+        os: [ubuntu-latest]
 
         # java_version: ['11', '17']
         java_version: ['11']
@@ -64,11 +64,11 @@ jobs:
     # - run: npm install shadow-cljs@2.20.13 -g
     # - run: npm install nbb@1.1.152 -g
 
-    # - uses: actions/setup-python@v5
-    #   with:
-    #     python-version: '3.12'
-    # - run: |
-    #     pip install basilisp==0.1.0b2
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - run: |
+        pip install basilisp==0.1.0b2
 
     - name: compile
       run: |
