@@ -234,7 +234,7 @@ async function startJackInProcedure(
     await projectRoot.findProjectRoots()
   );
   // Project type pre-select, qps = quickPickSingle
-    console.error(":::::::::::URI", projectRootUri.fsPath); 
+  console.error(':::::::::::URI', projectRootUri.fsPath);
   const saveAs = `qps-${projectRootUri.toString()}/jack-in-type`;
   await state.extensionContext.workspaceState.update(saveAs, projectType);
 

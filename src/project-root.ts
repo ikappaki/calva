@@ -127,7 +127,7 @@ function findMatchingParent(
 ) {
   return uris.reduce((root: vscode.Uri | undefined, uri) => {
     const relative = path.relative(uri.fsPath, from.fsPath);
-      // console.error(":root", root && root.fsPath, ":rel", relative, ":uri", uri.fsPath, ":from", from.fsPath);
+    // console.error(":root", root && root.fsPath, ":rel", relative, ":uri", uri.fsPath, ":from", from.fsPath);
     if (relative && !relative.includes('..' + path.sep)) {
       if (!root) {
         return uri;
@@ -139,9 +139,9 @@ function findMatchingParent(
 }
 
 export function findClosestParent(from: vscode.Uri, uris: vscode.Uri[]) {
-    // console.error(":from", from.fsPath);
+  // console.error(":from", from.fsPath);
   return findMatchingParent(from, uris, (a, b) => {
-      // console.error(":a", a.path, ":b", b.path, ":cmp", a.path>b.path);
+    // console.error(":a", a.path, ":b", b.path, ":cmp", a.path>b.path);
     if (a.path > b.path) {
       return a;
     } else {

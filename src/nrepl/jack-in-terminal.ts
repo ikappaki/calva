@@ -83,7 +83,7 @@ export class JackInTerminal implements vscode.Pseudoterminal {
       });
       this.process.stdout.on('data', (data) => {
         const msg = this.dataToString(data);
-          console.error(":TDATA", msg);
+        console.error(':TDATA', msg);
         this.writeEmitter.fire(`${msg}\r\n`);
         // Started nREPL server at 127.0.0.1:1337
         // nREPL server started on port 61419 on host localhost - nrepl://localhost:61419
@@ -103,7 +103,7 @@ export class JackInTerminal implements vscode.Pseudoterminal {
       });
       this.process.stderr.on('data', (data) => {
         const msg = this.dataToString(data);
-          console.error(":TEDATA", msg);
+        console.error(':TEDATA', msg);
         this.writeEmitter.fire(`${msg}\r\n`);
       });
     });
