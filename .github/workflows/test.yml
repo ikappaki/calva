@@ -80,5 +80,5 @@ jobs:
       if: runner.os == 'Linux'
  
     - name: Test integration
-      run: npm test
+      run: npm run integration-test
       if: runner.os != 'Linux'
