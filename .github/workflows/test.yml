@@ -24,9 +24,6 @@ jobs:
         os: [macos-latest, ubuntu-latest, windows-latest]
         # os: [ubuntu-latest]
 
-        # java_version: ['11', '17']
-        java_version: ['11']
-
     steps:
 
     - name: Install deps.clj on MS-Windows
@@ -43,8 +40,8 @@ jobs:
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
-        # shadow requires java 11
-        java-version: ${{matrix.java_version}}
+        # shadow requires at least java 11
+        java-version: '11'
 
     - name: Install Clojure Tools
       # Use SHA until
@@ -74,21 +71,16 @@ jobs:
       run: |
         npm run compile
 
-    - name: Test integration (Linux)
-      if: startsWith (matrix.os, 'windows')
-      run: |
-        xvfb-run -a npm run integration-test
- 
     - name: Test integration (Ubuntu)
       if: startsWith (matrix.os, 'ubuntu')
       run: |
-        (Get-Content -Path "node_modules/@vscode/debugadapter/lib/debugSession.js" -Raw) -replace '(?s)        this\.on\(''close'',\s*\(\)\s*=>\s*{\s*this.shutdown\(\);\s*}\);', '/*$0*/'| Set-Content -Path "node_modules/@vscode/debugadapter/lib/debugSession.js"
-        npm run integration-test
-
-    - name: Test integration (Linux)
+        xvfb-run -a npm run integration-test
+ 
+    - name: Test integration (MS-Windows)
       if: startsWith (matrix.os, 'windows')
       run: |
-        xvfb-run -a npm run integration-test
+        (Get-Content -Path "node_modules/@vscode/debugadapter/lib/debugSession.js" -Raw) -replace '(?s)        this\.on\(''close'',\s*\(\)\s*=>\s*{\s*this.shutdown\(\);\s*}\);', '/*$0*/'| Set-Content -Path "node_modules/@vscode/debugadapter/lib/debugSession.js"
+        npm run integration-test
 
     - name: Test integration (MacOs)
       if: startsWith (matrix.os, 'macos')
