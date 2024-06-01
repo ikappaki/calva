@@ -49,7 +49,13 @@ type FindRootParams = {
 export async function findProjectRootsWithReasons(params?: FindRootParams) {
   const lspDirectories = ['.lsp/config.edn', '.clj-kondo/config.edn'];
 
-  const projectFileNames: string[] = ['project.clj', 'shadow-cljs.edn', 'deps.edn', 'bb.edn', 'basilisp.edn'];
+  const projectFileNames: string[] = [
+    'project.clj',
+    'shadow-cljs.edn',
+    'deps.edn',
+    'bb.edn',
+    'basilisp.edn',
+  ];
   if (params?.include_lsp_directories) {
     projectFileNames.push(...lspDirectories);
   }

@@ -64,7 +64,7 @@ suite('Jack-in suite', () => {
   test('start repl and connect (jack-in) to basilisp', async function () {
     testUtil.log(suite, 'start repl and connect (jack-in) to basilisp');
     const basilispPath = getConfig().basilispPath;
-    console.error(":BP", basilispPath, which.sync(basilispPath));
+    console.error(':BP', basilispPath, which.sync(basilispPath));
 
     const settings = {};
     await writeSettings(settings);
@@ -222,7 +222,7 @@ async function startJackInProcedure(
 ) {
   const testFilePath = path.join(testUtil.testDataDir, 'test.clj');
   await testUtil.openFile(testFilePath);
-  testUtil.log(suite, 'test.clj opened');
+  testUtil.log(suite, 'test.clj opened for project type ${projectType}');
 
   const projectRootUri = projectRoot.findClosestParent(
     vscode.window.activeTextEditor?.document.uri,
