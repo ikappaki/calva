@@ -227,7 +227,7 @@ async function startJackInProcedure(
 ) {
   const testFilePath = path.join(testUtil.testDataDir, 'test.clj');
   await testUtil.openFile(testFilePath);
-  testUtil.log(suite, 'test.clj opened for project type ${projectType}');
+  testUtil.log(suite, `test.clj opened for project type ${projectType}`);
 
   const projectRootUri = projectRoot.findClosestParent(
     vscode.window.activeTextEditor?.document.uri,
