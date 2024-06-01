@@ -4,6 +4,7 @@ import * as path from 'path';
 import * as testUtil from './util';
 import * as state from '../../../state';
 import * as util from '../../../utilities';
+import * as which from 'which';
 
 import * as vscode from 'vscode';
 // import * as myExtension from '../extension';
@@ -11,7 +12,7 @@ import * as outputWindow from '../../../repl-window/repl-doc';
 import { commands } from 'vscode';
 import { getDocument } from '../../../doc-mirror';
 import * as projectRoot from '../../../project-root';
-import { updateWorkspaceConfig } from '../../../config';
+import { getConfig, updateWorkspaceConfig } from '../../../config';
 
 const settingsUri: vscode.Uri = vscode.Uri.joinPath(
   vscode.workspace.workspaceFolders[0].uri,
@@ -62,6 +63,8 @@ suite('Jack-in suite', () => {
 
   test('start repl and connect (jack-in) to basilisp', async function () {
     testUtil.log(suite, 'start repl and connect (jack-in) basilisp');
+    const basilispPath = getConfig().basilispPath;
+    console.error(":BP", basilispPath, which.sync(basilispPath));
 
     const settings = {};
     await writeSettings(settings);
