@@ -59,6 +59,8 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 16
+    - run: npm install
+
     # - run: npm install shadow-cljs@2.20.13 -g
     # - run: npm install nbb@1.1.152 -g
 
@@ -70,16 +72,9 @@ jobs:
 
     - name: compile
       run: |
-        # The tests occasionally fail on macos&win in what is seems to
-        # be GH connectivity runner issues. We attempt to address this
-        # problem by rerunning the tests more than once.
-        npm install
-        npm compile
+        npm run compile
 
     - name: Test integration
       run: |
         npm run test-integration
-        # The tests occasionally fail on macos&win in what is seems to
-        # be GH connectivity runner issues. We attempt to address this
-        # problem by rerunning the tests more than once.
 
