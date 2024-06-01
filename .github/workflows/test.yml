@@ -22,7 +22,7 @@ jobs:
     strategy:
       matrix:
         # os: [macos-13, ubuntu-latest, windows-latest]
-        os: [ubuntu-latest]
+        os: [windows-latest]
 
         # java_version: ['11', '17']
         java_version: ['11']
@@ -74,7 +74,11 @@ jobs:
       run: |
         npm run compile
 
-    - name: Test integration
+    - name: Test integration (Linux)
       run: |
         xvfb-run -a npm run integration-test
       if: runner.os == 'Linux'
+ 
+    - name: Test integration
+      run: npm test
+      if: runner.os != 'Linux'
